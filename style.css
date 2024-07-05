@@ -1,0 +1,128 @@
+
+/*Exercício 2: Análise de Código
+Luis Fellipe
+•
+17:42
+100 pontos
+- Coloque os 3 itens na mesma pasta e execute o index.html
+
+
+Neste exercício, você irá analisar e compreender um código HTML, CSS e JavaScript para um slideshow simples. Suas tarefas serão divididas em três partes:
+Parte 1: Comentar as Linhas de CSS - Analise o arquivo style.css e faça comentários explicativos em cada linha de código. Descreva o propósito de cada estilo e como ele contribui para a aparência e o layout do slideshow.
+Parte 2: Comentar as Linhas de JavaScript - Examine o arquivo script.js e adicione comentários em cada função e linha de código. Explicite o papel de cada função e instrução na manipulação do DOM e no controle da exibição dos slides.
+Parte 3: Explicar a Lógica do JavaScript - Escreva um parágrafo explicativo sobre a lógica de funcionamento do JavaScript neste contexto. Descreva como as funções trabalham em conjunto para exibir os slides e sincronizar os pontos de navegação com a visualização dos slides. Detalhe como os eventos de clique nos botões de navegação e nos pontos de navegação são tratados para proporcionar uma experiência interativa de slideshow.
+A turma pode debater para tentar chegar a um entendimento do código
+Mas a entrega é individual, use suas palavras e a forma como VOCE entendeu o código para escrever seus comentários e explicações
+
+index.html
+HTML
+
+script.js
+JavaScript
+
+style.css
+Folha de estilo
+Comentários da turma
+Seus trabalhos
+Atribuído
+Comentários particulares*/ 
+
+* {
+    box-sizing: border-box /*permite incluir prenchimento e borda na largura e altura total*/
+}
+
+/* classe do container com as imagens*/
+.slideshow-container {
+    max-width: 1000px; /* define a largura máxima do elemento*/
+    position: relative; /* ajusta o elemento para fora de sua posição normal*/
+    margin: auto; /* centraliza horizontalmento o elemento dentro do container e divide os espaços restantos entre as margens iguais*/
+}
+
+/*classe das imagens*/
+.mySlides {
+    display: none; /* oculta o elemento sem excluí-lo*/
+}
+
+/*classes dos botões de roalgem*/
+.anterior,
+.proximo {
+    cursor: pointer; /*altera o cursor para um ícone de mão com um dedo apontado para elemento indicando que é interativo e clicavel*/
+    position: absolute; /*posiciona o elemento em relação ao seu ancestral mais próximo*/
+    top: 50%; /*define o preenchimento supereior em 50% da largura do elemento que o contém*/
+    width: auto; /*preenche o elemento 'pai' sem ultrapassar sua largura, levando em consideração margenes e paddings*/
+    margin-top: -22px; /*move o elemento para cima, em direção ao que está acima dele, 'pai', o sobrepondo*/
+    padding: 16px; /*cria um espaçamento interno com valor de 16px nos  quatros lados da propriedade*/
+    color: white; /*define que a cor do elemento será branca*/
+    font-weight: bold; /*define a epessura ou peso (caracter mais grosso) do elemento e criar um destaque visual. */
+    font-size: 18px; /*define o tamanho da fonte que terá 18px */
+    transition: 0.6s ease; /*define a duração da trasição dos elementos que levrá 0.6 segundos especificando que a transição será suave.*/
+    border-radius: 0 3px 3px 0; /*define os cantos do elemento: o superior esquerdo em 0, o superior direito em 3px, o inferior direito 3px e o inferior esquerdo 0 */
+    user-select: none; /*especifica que o texto do elemento não pode ser selecionado*/
+}
+
+/*classe dos botões de rolagem para passar o slider seguinte*/
+.proximo {
+    right: 0; /*define a margem direita como 0 */
+    border-radius: 3px 0 0 3px; /*define os cantos do elemento: o superior esquerdo em 3px, o superior direito em 0, o inferior direito 0 e o inferior esquerdo 3px*/
+}
+
+/*classe do botão de rolagem que será selecionado quando o mouse passar sobre eles */
+.anterior:hover,
+.proximo:hover {
+    background-color: rgba(0, 0, 0, 0.8); /*define a cor de fundo como RGBA na cor preta com 80% opaca e 20% transparente*/
+}
+
+/*classe dos textos no elemento*/
+.text {
+    color: #f2f2f2; /*define a cor do texto para cinza claro*/
+    font-size: 15px; /*define a fonte como 15px*/
+    padding: 8px 12px; /*define o espaçamento interno superior e inferior para 8px e 12px para as partes esquerda e direita*/
+    position: absolute; /*define que sua posição será absoluta em relação ao seu ancestral*/
+    bottom: 8px; /*define a posição inferior de 8px */
+    width: 100%; /*iguala a largura do elemento coma do elemento 'pai' levando em consideração borda e padding*/
+    text-align: center; /*centraliza o texto ao centro do elemento 'pai'*/
+}
+
+/*classe dos números dos slides*/
+.numbertext {
+    color: #f2f2f2; /*define a cor dos números para cinza claro*/
+    font-size: 12px; /*define a fonte para 12px */
+    padding: 8px 12px; /*define o espaçamento interno superior e inferior para 8px e 12px para as partes esquerda e direita*/
+    position: absolute; /*define que sua posição será absoluta em relação ao seu ancestral*/
+    top: 0; /*define 0 para o espaçamento superior*/
+}
+
+/*classe que indica a navegação entre os slides no carrossel*/
+.ponto {
+    cursor: pointer; /*altera o cursor para um ícone de mão com um dedo apontado para elemento indicando que é interativo e clicavel*/
+    height: 15px; /*define a altura em 15px*/
+    width: 15px; /*define a largura em 15px*/
+    margin: 0 2px; /*define a margem superior e inferior como 0 e margem esquerda e direita como 2px*/
+    background-color: #bbb; /*define a cor de fundo em claro médio*/
+    border-radius: 50%; /*arredonda a borda em 50%*/
+    display: inline-block; /*faz com que o elemento ocupe o espaço em linha e permite definir uma altura e largura*/
+    transition: background-color 0.6s ease; /*a transição será aplicada à propride background-color com duração de 0.6 segundo e de forma suave  */
+}
+
+/*classe active usando pela JavaScript e classe ponto que indica a nevegação dos slides*/
+.active,
+.ponto:hover {
+    background-color: #717171; /*define a cor de fundo como cinzento escuro quando o mouse passar por ela*/
+}
+
+/*classe fade para aplicar animação aos elementos*/
+.fade {
+    animation-name: fade; /*define o nome da animação a ser aplicada como fade*/
+    animation-duration: 2.5s; /*define a duração da animação em 2.5 segundos*/
+}
+
+/*regra para a aplicação da animação fade*/
+@keyframes fade {
+    from {
+        opacity: .2 /*define o estado inicial da animação com a opacidade do elemeto em .2 ou 20% - bastante transparente*/
+    }
+
+    to {
+        opacity: 1 /*define o estado final da animação com a opacidade do elemento em 1 ou 100% - totalmente visível*/
+    }
+}
