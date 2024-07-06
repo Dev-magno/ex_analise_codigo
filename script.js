@@ -1,3 +1,4 @@
+// Magno Lopes
 let slideIndex = 1; // variavel slideIndex inicializada com 1.
 showSlides(slideIndex); // chamada da função showSlides que mostra o slide inicial slideIndex.
 
