@@ -37,12 +37,11 @@ function showSlides(n) { // o parâmetro n indica o incice do slide a ser mostra
     
     pontos[slideIndex - 1].className += " active"; // a linha adicona a clsse "active" ao ponto de navegação correspondente ao slide atual e marca o ponto visualmente o ponto ativo.
 
-    /*
+    /*Parte 3
     Esta função foi projetada para controlar, em um carrossel de slides, a exibição de slides. O parâmetro 'n' que ela recebe indica qual slide deve ser mostrado. A função verifica se 'n' está nos limites disponíveis dos slides. Caso, não esteja, ela ajusta 'n' para o primeiro ou para o último slide. 
 
     Depois, oculta todos os outros slides e remove qualquer marcação do slide atual nos pontos de navegação. Então, exibe o slide correto e marca o ponto de navegação correspondente como ativo. 
 
     Resumindo, ela percorre todos os slides. De acordo com o parâmetro passado, exibe o slide correspondente ao indicado, tornando ativo apenas o seu ponto de navegação e constantemente ajusta o parâmetro para o primeiro ou último. Fazendo assim com que o carrossel de slide seja corretamente exibido na tela.
-
      */
 }
